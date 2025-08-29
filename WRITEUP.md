@@ -1,0 +1,10 @@
+Short Write-Up
+The Auto-PPT Generator app transforms user-provided bulk text into well-structured PowerPoint presentations by intelligently parsing and mapping the input content into slides. It supports two modes of operation: an LLM-powered mode and a heuristic mode.
+
+When an LLM API key is provided, the app sends the input text along with optional user guidance to the large language model. The LLM processes the text, recognizes logical breaks, and returns a structured JSON schema describing slide types—such as title slides, content slides, and image content slides—along with slide titles, subtitles, and bullet points. This allows for a sophisticated and contextually aware organization of slide content, facilitating professional and coherent presentations.
+
+If no API key is supplied, the app falls back to a heuristic parser that segments the input text into paragraphs using double newlines. The first paragraph becomes the title slide while the subsequent paragraphs each generate a content slide. Titles and contents are extracted based on line breaks, providing a simple but effective slide mapping mechanism without external dependencies.
+
+To apply styling, the app reads the user-uploaded PowerPoint template using the python-pptx library. It identifies master slide layouts and placeholders for titles, subtitles, and content. When generating new slides, the app inserts the parsed text into the corresponding placeholders, clearing any existing dummy text to preserve the template’s design integrity. Template images are reused strategically on slides with visual content, ensuring adherence to brand colors, fonts, and overall style.
+
+This methodology guarantees presentations that are not only content-accurate but visually consistent with user-selected templates, enabling effortless creation of polished PowerPoint decks.
